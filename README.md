@@ -16,6 +16,23 @@
 </head>
 
 <body class="bg-black text-white overflow-x-hidden">
+<!-- Flying Crows Container -->
+<div id="crow-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
+  <!-- Crow 1 -->
+  <svg class="crow absolute w-12 h-12 text-white opacity-20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M5 2L3 6l3 1-2 5 5-2 1 3 3-1 2 5 5-2 1 3 4-8-8-4-3-5-6-1z"/>
+  </svg>
+
+  <!-- Crow 2 -->
+  <svg class="crow absolute w-16 h-16 text-white opacity-10" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M5 2L3 6l3 1-2 5 5-2 1 3 3-1 2 5 5-2 1 3 4-8-8-4-3-5-6-1z"/>
+  </svg>
+
+  <!-- Crow 3 -->
+  <svg class="crow absolute w-8 h-8 text-white opacity-15" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M5 2L3 6l3 1-2 5 5-2 1 3 3-1 2 5 5-2 1 3 4-8-8-4-3-5-6-1z"/>
+  </svg>
+</div>
 
   <!-- Hero Section -->
   <section class="h-screen flex items-center justify-center text-center">
