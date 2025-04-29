@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6"></h1>
-  <head>
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Corvus</title>
@@ -14,14 +13,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <style>
-   .log-entry {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.log-entry:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
-}
-
+    .log-entry {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .log-entry:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+    }
     body {
       font-family: 'Helvetica Neue', sans-serif;
       background-color: #0f0f0f;
@@ -34,6 +32,8 @@
   </style>
 </head>
 <body class="overflow-x-hidden">
+
+<!-- Navbar -->
 <nav id="navbar" class="fixed top-0 w-full flex justify-between items-center px-8 py-4 z-50 transition-all duration-500">
   <div class="text-white text-2xl font-bold">Project Corvus</div>
   <div class="space-x-6">
@@ -43,79 +43,56 @@
   </div>
 </nav>
 
-  <!-- Hero Section -->
-  <section id="hero" class="flex flex-col justify-center items-center text-center bg-black">
-    <h1 class="text-5xl md:text-7xl font-bold mb-6">Project Corvus</h1>
-    <p class="text-xl md:text-2xl max-w-xl">What if crows evolved intelligence like ours? Would they create gods, myths, rituals? Would we finally see the roots of belief?</p>
-  </section>
+<!-- Hero Section -->
+<section id="hero" class="flex flex-col justify-center items-center text-center bg-black">
+  <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6"></h1>
+  <p class="text-xl md:text-2xl max-w-xl">What if crows evolved intelligence like ours? Would they create gods, myths, rituals? Would we finally see the roots of belief?</p>
+</section>
 
-  <!-- About Section -->
-  <section id="about" class="bg-gray-900">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-4xl font-bold mb-4">The Experiment</h2>
-      <p class="text-lg leading-relaxed">
-        Crows are already among the smartest animals on Earth — capable of memory, communication, and basic tools. Yet they never built societies. In this thought experiment, we imagine artificially accelerating crow evolution to observe how intelligence creates culture, belief systems, and possibly... religion.
-      </p>
-    </div>
-  </section>
+<!-- About Section -->
+<section id="about" class="bg-gray-900">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold mb-4">The Experiment</h2>
+    <p class="text-lg leading-relaxed">
+      Crows are already among the smartest animals on Earth — capable of memory, communication, and basic tools. Yet they never built societies. In this thought experiment, we imagine artificially accelerating crow evolution to observe how intelligence creates culture, belief systems, and possibly... religion.
+    </p>
+  </div>
+</section>
 
-  <!-- Research Logs Section -->
-  <section id="logs" class="bg-black">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-4xl font-bold mb-4">Research Logs</h2>
-      <div class="space-y-8">
-        <div class="log-entry">
-          <h3 class="text-2xl font-semibold">Day 30 – Symbolic Burials</h3>
-          <p>Crows begin burying shiny objects in specific locations. Early signs of ritual behavior emerge.</p>
-        </div>
-        <div class="log-entry">
-          <h3 class="text-2xl font-semibold">Day 100 – Totemic Behavior</h3>
-          <p>Groups start gathering around specific objects. One group is observed 'dancing' during storms. Are they interpreting weather as supernatural?</p>
-        </div>
-        <div class="log-entry">
-          <h3 class="text-2xl font-semibold">Day 300 – Emergence of Sky Deity</h3>
-          <p>A story is repeatedly mimed by older crows: a giant bird in the sky brings light and death. Religion... has begun.</p>
-        </div>
+<!-- Research Logs Section -->
+<section id="logs" class="bg-black">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold mb-4">Research Logs</h2>
+    <div class="space-y-8">
+      <div class="log-entry">
+        <h3 class="text-2xl font-semibold">Day 30 – Symbolic Burials</h3>
+        <p>Crows begin burying shiny objects in specific locations. Early signs of ritual behavior emerge.</p>
+      </div>
+      <div class="log-entry">
+        <h3 class="text-2xl font-semibold">Day 100 – Totemic Behavior</h3>
+        <p>Groups start gathering around specific objects. One group is observed 'dancing' during storms. Are they interpreting weather as supernatural?</p>
+      </div>
+      <div class="log-entry">
+        <h3 class="text-2xl font-semibold">Day 300 – Emergence of Sky Deity</h3>
+        <p>A story is repeatedly mimed by older crows: a giant bird in the sky brings light and death. Religion... has begun.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Conclusion Section -->
-  <section id="conclusion" class="bg-gray-900">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-4xl font-bold mb-4">Final Thoughts</h2>
-      <p class="text-lg leading-relaxed">
-        As we observe crow society evolve, a key question emerges: is religion a natural byproduct of intelligence, or a unique artifact of human consciousness? If crows create belief systems, what does that say about our own?
-      </p>
-    </div>
-  </section>
+<!-- Conclusion Section -->
+<section id="conclusion" class="bg-gray-900">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold mb-4">Final Thoughts</h2>
+    <p class="text-lg leading-relaxed">
+      As we observe crow society evolve, a key question emerges: is religion a natural byproduct of intelligence, or a unique artifact of human consciousness? If crows create belief systems, what does that say about our own?
+    </p>
+  </div>
+</section>
 
-  <script>
- gsap.utils.toArray("section").forEach((section) => {
-  gsap.from(section, {
-    opacity: 0,
-    y: 50,
-    duration: 1.2,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: section,
-      start: "top 80%",
-      toggleActions: "play none none none"
-    }
-  });
-});
-
-    // Navbar background on scroll
-window.addEventListener("scroll", function () {
-  const navbar = document.getElementById("navbar");
-  if (window.scrollY > 50) {
-    navbar.classList.add("bg-black", "bg-opacity-80", "backdrop-blur");
-  } else {
-    navbar.classList.remove("bg-black", "bg-opacity-80", "backdrop-blur");
-  }
-});
-
-    gsap.registerPlugin(ScrollTrigger);
+<!-- Scripts -->
+<script>
+  gsap.registerPlugin(ScrollTrigger);
 
   // Typing Effect for Hero Title
   const text = "Project Corvus";
@@ -139,21 +116,32 @@ window.addEventListener("scroll", function () {
     onComplete: typeWriter
   });
 
-  // Section Fade Up on Scroll
+  // Navbar background change on scroll
+  window.addEventListener("scroll", function () {
+    const navbar = document.getElementById("navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("bg-black", "bg-opacity-80", "backdrop-blur");
+    } else {
+      navbar.classList.remove("bg-black", "bg-opacity-80", "backdrop-blur");
+    }
+  });
+
+  // Sections Fade Up on Scroll
   gsap.utils.toArray("section").forEach((section) => {
     gsap.from(section, {
       opacity: 0,
-      y: 100,
+      y: 50,
       duration: 1.2,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: section,
-        start: "top 85%",
+        start: "top 80%",
         toggleActions: "play none none none"
       }
     });
   });
 
-  // Parallax Effect on Scroll
+  // Parallax Background Effect
   gsap.utils.toArray("section").forEach((section) => {
     gsap.to(section, {
       backgroundPosition: "50% 100%",
@@ -165,7 +153,7 @@ window.addEventListener("scroll", function () {
     });
   });
 
-  // Research Logs Animate One by One
+  // Animate Research Logs One-by-One
   gsap.utils.toArray(".log-entry").forEach((entry, i) => {
     gsap.from(entry, {
       opacity: 0,
@@ -180,7 +168,7 @@ window.addEventListener("scroll", function () {
     });
   });
 
-  // Smooth Scroll to Sections
+  // Smooth Scroll Links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function(e) {
       e.preventDefault();
@@ -193,7 +181,6 @@ window.addEventListener("scroll", function () {
     });
   });
 </script>
-
 
 </body>
 </html>
