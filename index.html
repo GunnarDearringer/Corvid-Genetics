@@ -4,10 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Corvid Genetics</title>
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP + ScrollTrigger + TextPlugin -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+
   <style>
     body {
       font-family: 'Helvetica Neue', sans-serif;
@@ -25,16 +30,6 @@
       position: relative;
       overflow: hidden;
     }
-    .section-title span {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .crow, .particle {
-      pointer-events: none;
-      position: absolute;
-      z-index: 1;
-    }
     #intro-overlay {
       position: fixed;
       top: 0;
@@ -46,23 +41,47 @@
     }
     #sunrise-glow {
       background: radial-gradient(circle at top center, rgba(255, 223, 128, 0.4) 0%, transparent 60%);
-      z-index: 0;
-      opacity: 0.8;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -10;
       animation: glowPulse 10s ease-in-out infinite alternate;
     }
     @keyframes glowPulse {
       from { opacity: 0.6; }
       to { opacity: 1; }
     }
+    .particle, .crow {
+      pointer-events: none;
+      position: absolute;
+      z-index: 1;
+    }
+    .section-title span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+    }
   </style>
 </head>
+
 <body>
 
+<!-- Intro Blackout -->
 <div id="intro-overlay"></div>
-<div id="sunrise-glow" class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10"></div>
-<div id="particles" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></div>
-<div id="flying-crows" class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0"></div>
 
+<!-- Sunrise Glow -->
+<div id="sunrise-glow"></div>
+
+<!-- Floating Particles -->
+<div id="particles"></div>
+
+<!-- Flying Crows -->
+<div id="flying-crows"></div>
+
+<!-- Navbar -->
 <nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 z-50 bg-white bg-opacity-70 backdrop-blur">
   <div class="text-2xl font-bold">Corvid Genetics</div>
   <div class="space-x-6">
@@ -72,169 +91,179 @@
   </div>
 </nav>
 
+<!-- Hero Section -->
 <section id="hero" class="flex flex-col justify-center items-center text-center">
   <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6"></h1>
-  <p class="text-xl md:text-2xl max-w-xl">What if crows evolved intelligence like ours? Would they create gods, myths, rituals? Would we finally see the roots of belief?</p>
+  <p class="text-xl md:text-2xl max-w-xl">
+    What if crows evolved intelligence like ours? Would they create gods, myths, rituals?
+  </p>
 </section>
 
-<section id="about" class="bg-[#faf5e4] text-[#2c2c2c] relative z-10">
+<!-- About Section -->
+<section id="about" class="relative z-10 bg-[#faf5e4] text-[#2c2c2c]">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4 section-title">The Experiment</h2>
-    <p class="text-lg leading-relaxed">Crows are among the smartest animals — capable of memory, communication, and basic tools. Yet they never built societies. What would happen if we accelerated their evolution?</p>
+    <p class="text-lg leading-relaxed">
+      Crows are among the smartest animals — capable of memory, communication, and basic tools. Yet they never built societies.
+    </p>
   </div>
 </section>
 
-<section id="logs" class="bg-[#e2f0d9] text-[#2f3e2e] relative z-10">
+<!-- Logs Section -->
+<section id="logs" class="relative z-10 bg-[#e2f0d9] text-[#2f3e2e]">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4 section-title">Research Logs</h2>
     <div class="space-y-8">
       <div class="log-entry">
         <h3 class="text-2xl font-semibold">Day 30 – Symbolic Burials</h3>
-        <p>Crows begin burying shiny objects. Early signs of ritual behavior emerge.</p>
+        <p>Crows bury shiny objects — ritual behavior begins.</p>
       </div>
       <div class="log-entry">
         <h3 class="text-2xl font-semibold">Day 100 – Totemic Behavior</h3>
-        <p>Groups gather around specific objects, mimicking worship behaviors during storms.</p>
+        <p>Crows gather around totems, dance during storms.</p>
       </div>
       <div class="log-entry">
         <h3 class="text-2xl font-semibold">Day 300 – Emergence of Sky Deity</h3>
-        <p>Older crows repeatedly act out a sky god story — religion... has begun.</p>
+        <p>Sky god myths are passed among crows.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="conclusion" class="bg-[#fbe9e7] text-[#4a2f2f] relative z-10">
+<!-- Conclusion Section -->
+<section id="conclusion" class="relative z-10 bg-[#fbe9e7] text-[#4a2f2f]">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4 section-title">Final Thoughts</h2>
-    <p class="text-lg leading-relaxed">If crows can create gods, myths, and society when given the spark of intelligence, what does it reveal about humanity’s origins?</p>
+    <p class="text-lg leading-relaxed">
+      If crows can create gods, myths, and society when given the spark of intelligence — what does that say about humanity's own origins?
+    </p>
   </div>
 </section>
 
 <script>
-  gsap.registerPlugin(ScrollTrigger, TextPlugin);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-  // Intro overlay fade
-  gsap.to("#intro-overlay", {
-    opacity: 0,
-    duration: 2,
-    delay: 1,
-    onComplete: () => document.getElementById("intro-overlay").remove()
-  });
+// Intro fade
+gsap.to("#intro-overlay", {
+  opacity: 0,
+  duration: 2,
+  delay: 1,
+  onComplete: () => document.getElementById("intro-overlay").remove()
+});
 
-  // Hero title typing
-  const text = "Corvid Genetics";
-  const title = document.getElementById("hero-title");
-  let index = 0;
-  function typeWriter() {
-    if (index < text.length) {
-      title.innerHTML += text.charAt(index);
-      index++;
-      setTimeout(typeWriter, 100);
-    }
+// Hero title typing
+const text = "Corvid Genetics";
+const title = document.getElementById("hero-title");
+let index = 0;
+function typeWriter() {
+  if (index < text.length) {
+    title.innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeWriter, 100);
   }
-  gsap.from("#hero", {
-    opacity: 0,
-    scale: 0.8,
-    duration: 2,
-    ease: "power2.out",
-    onComplete: typeWriter
-  });
+}
+gsap.from("#hero", {
+  opacity: 0,
+  scale: 0.8,
+  duration: 2,
+  ease: "power2.out",
+  onComplete: typeWriter
+});
 
-  // Hero glow
-  gsap.to("#hero-title", {
-    textShadow: "0px 0px 20px #ffe59d, 0px 0px 40px #ffe59d",
+// Title glowing
+gsap.to("#hero-title", {
+  textShadow: "0px 0px 20px #ffe59d, 0px 0px 40px #ffe59d",
+  repeat: -1,
+  yoyo: true,
+  duration: 2,
+  ease: "power1.inOut"
+});
+
+// Floating particles
+for (let i = 0; i < 40; i++) {
+  const p = document.createElement("div");
+  p.classList.add("particle");
+  document.getElementById("particles").appendChild(p);
+  gsap.set(p, {
+    width: "6px",
+    height: "6px",
+    backgroundColor: "gold",
+    borderRadius: "50%",
+    top: Math.random() * window.innerHeight,
+    left: Math.random() * window.innerWidth,
+    opacity: 0.1 + Math.random() * 0.3
+  });
+  gsap.to(p, {
+    y: "-=100",
+    duration: 10 + Math.random() * 10,
     repeat: -1,
-    yoyo: true,
-    duration: 2,
-    ease: "power1.inOut"
+    ease: "none"
   });
+}
 
-  // Floating particles
-  for (let i = 0; i < 40; i++) {
-    const particle = document.createElement("div");
-    particle.classList.add("particle");
-    document.getElementById("particles").appendChild(particle);
-    gsap.set(particle, {
-      width: "6px",
-      height: "6px",
-      backgroundColor: "gold",
-      borderRadius: "50%",
-      top: Math.random() * window.innerHeight,
-      left: Math.random() * window.innerWidth,
-      opacity: 0.1 + Math.random() * 0.3
-    });
-    gsap.to(particle, {
-      y: "-=100",
-      duration: 10 + Math.random() * 10,
-      repeat: -1,
-      ease: "none"
-    });
-  }
+// Flying crows
+const crowCount = 7;
+for (let i = 0; i < crowCount; i++) {
+  const crow = document.createElement("div");
+  crow.classList.add("crow");
+  document.getElementById("flying-crows").appendChild(crow);
+  gsap.set(crow, {
+    backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/7/71/Crow_silhouette.png')",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+    width: 40 + Math.random() * 40 + "px",
+    height: 40 + Math.random() * 40 + "px",
+    top: Math.random() * window.innerHeight * 0.4,
+    left: -200,
+    opacity: 0.6 + Math.random() * 0.3,
+    scale: 0.8 + Math.random() * 0.5,
+    rotation: -15 + Math.random() * 30
+  });
+  animateCrow(crow);
+}
 
-  // Flying crows
-  const crowCount = 7;
-  for (let i = 0; i < crowCount; i++) {
-    const crow = document.createElement("div");
-    crow.classList.add("crow");
-    document.getElementById("flying-crows").appendChild(crow);
-    gsap.set(crow, {
-      backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/7/71/Crow_silhouette.png')",
-      backgroundSize: "contain",
-      backgroundRepeat: "no-repeat",
-      width: 40 + Math.random() * 40 + "px",
-      height: 40 + Math.random() * 40 + "px",
-      top: Math.random() * window.innerHeight * 0.4,
-      left: -200,
-      opacity: 0.6 + Math.random() * 0.3,
-      scale: 0.8 + Math.random() * 0.5,
-      rotation: -15 + Math.random() * 30
-    });
-    animateCrow(crow);
-  }
+function animateCrow(crow) {
+  const duration = 12 + Math.random() * 8;
+  const flap = gsap.timeline({ repeat: -1, yoyo: true });
+  flap.to(crow, { scaleY: 0.9, rotation: "+=5", duration: 0.6, ease: "power1.inOut" })
+      .to(crow, { scaleY: 1.1, rotation: "-=5", duration: 0.6, ease: "power1.inOut" });
+  gsap.to(crow, {
+    x: window.innerWidth + 300,
+    y: "+=" + (Math.random() * 100 - 50),
+    duration: duration,
+    ease: "linear",
+    onComplete: () => {
+      gsap.set(crow, {
+        x: -200,
+        y: Math.random() * window.innerHeight * 0.4,
+        scale: 0.8 + Math.random() * 0.5,
+        rotation: -15 + Math.random() * 30
+      });
+      animateCrow(crow);
+    }
+  });
+}
 
-  function animateCrow(crow) {
-    const duration = 12 + Math.random() * 8;
-    const flap = gsap.timeline({ repeat: -1, yoyo: true });
-    flap.to(crow, { scaleY: 0.9, rotation: "+=5", duration: 0.6, ease: "power1.inOut" })
-        .to(crow, { scaleY: 1.1, rotation: "-=5", duration: 0.6, ease: "power1.inOut" });
-    gsap.to(crow, {
-      x: window.innerWidth + 300,
-      y: "+=" + (Math.random() * 100 - 50),
-      duration: duration,
-      ease: "linear",
-      onComplete: () => {
-        gsap.set(crow, {
-          x: -200,
-          y: Math.random() * window.innerHeight * 0.4,
-          scale: 0.8 + Math.random() * 0.5,
-          rotation: -15 + Math.random() * 30
-        });
-        animateCrow(crow);
+// Animate section titles
+document.querySelectorAll(".section-title").forEach(title => {
+  const text = title.innerText;
+  title.innerHTML = "";
+  text.split("").forEach((letter, i) => {
+    const span = document.createElement("span");
+    span.textContent = letter;
+    title.appendChild(span);
+    gsap.to(span, {
+      delay: i * 0.05,
+      opacity: 1,
+      y: 0,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: title,
+        start: "top 80%"
       }
     });
-  }
-
-  // Section title animations
-  document.querySelectorAll(".section-title").forEach(title => {
-    const text = title.innerText;
-    title.innerHTML = "";
-    text.split("").forEach((letter, i) => {
-      const span = document.createElement("span");
-      span.textContent = letter;
-      title.appendChild(span);
-      gsap.to(span, {
-        delay: i * 0.05,
-        opacity: 1,
-        y: 0,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: title,
-          start: "top 80%"
-        }
-      });
-    });
   });
+});
 </script>
 
 </body>
