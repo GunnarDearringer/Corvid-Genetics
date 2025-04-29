@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Corvus</title>
+  <title>Corvid Genetics</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- GSAP + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -22,20 +22,27 @@
     }
     body {
       font-family: 'Helvetica Neue', sans-serif;
-      background-color: #0f0f0f;
-      color: white;
+      background-color: #000000;
+      color: #dbeac4;
     }
     section {
       min-height: 100vh;
       padding: 60px 20px;
     }
+    #about, #conclusion {
+      background-color: #f5f5dc; /* Beige */
+      color: #000000; /* Black text for contrast */
+    }
+    #logs {
+      background-color: #000000; /* Black */
+      color: #dbeac4; /* Light pale green */
+    }
   </style>
 </head>
 <body class="overflow-x-hidden">
 
-<!-- Navbar -->
 <nav id="navbar" class="fixed top-0 w-full flex justify-between items-center px-8 py-4 z-50 transition-all duration-500">
-  <div class="text-white text-2xl font-bold">Project Corvus</div>
+  <div class="text-white text-2xl font-bold">Corvid Genetics</div>
   <div class="space-x-6">
     <a href="#about" class="text-white hover:underline">About</a>
     <a href="#logs" class="text-white hover:underline">Logs</a>
@@ -50,7 +57,7 @@
 </section>
 
 <!-- About Section -->
-<section id="about" class="bg-gray-900">
+<section id="about">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4">The Experiment</h2>
     <p class="text-lg leading-relaxed">
@@ -60,7 +67,7 @@
 </section>
 
 <!-- Research Logs Section -->
-<section id="logs" class="bg-black">
+<section id="logs">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4">Research Logs</h2>
     <div class="space-y-8">
@@ -81,7 +88,7 @@
 </section>
 
 <!-- Conclusion Section -->
-<section id="conclusion" class="bg-gray-900">
+<section id="conclusion">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4">Final Thoughts</h2>
     <p class="text-lg leading-relaxed">
@@ -90,12 +97,11 @@
   </div>
 </section>
 
-<!-- Scripts -->
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
   // Typing Effect for Hero Title
-  const text = "Project Corvus";
+  const text = "Corvid Genetics";
   const title = document.getElementById("hero-title");
   let index = 0;
 
