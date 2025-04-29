@@ -54,7 +54,7 @@
       from { opacity: 0.6; }
       to { opacity: 1; }
     }
-    .particle, .crow {
+    .particle {
       pointer-events: none;
       position: absolute;
       z-index: 1;
@@ -77,9 +77,6 @@
 
 <!-- Floating Particles -->
 <div id="particles"></div>
-
-<!-- Flying Crows -->
-<div id="flying-crows"></div>
 
 <!-- Navbar -->
 <nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 z-50 bg-white bg-opacity-70 backdrop-blur">
@@ -198,49 +195,6 @@ for (let i = 0; i < 40; i++) {
     duration: 10 + Math.random() * 10,
     repeat: -1,
     ease: "none"
-  });
-}
-
-// Flying crows
-const crowCount = 7;
-for (let i = 0; i < crowCount; i++) {
-  const crow = document.createElement("div");
-  crow.classList.add("crow");
-  document.getElementById("flying-crows").appendChild(crow);
-  gsap.set(crow, {
-    backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/7/71/Crow_silhouette.png')",
-    backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    width: 40 + Math.random() * 40 + "px",
-    height: 40 + Math.random() * 40 + "px",
-    top: Math.random() * window.innerHeight * 0.4,
-    left: -200,
-    opacity: 0.6 + Math.random() * 0.3,
-    scale: 0.8 + Math.random() * 0.5,
-    rotation: -15 + Math.random() * 30
-  });
-  animateCrow(crow);
-}
-
-function animateCrow(crow) {
-  const duration = 12 + Math.random() * 8;
-  const flap = gsap.timeline({ repeat: -1, yoyo: true });
-  flap.to(crow, { scaleY: 0.9, rotation: "+=5", duration: 0.6, ease: "power1.inOut" })
-      .to(crow, { scaleY: 1.1, rotation: "-=5", duration: 0.6, ease: "power1.inOut" });
-  gsap.to(crow, {
-    x: window.innerWidth + 300,
-    y: "+=" + (Math.random() * 100 - 50),
-    duration: duration,
-    ease: "linear",
-    onComplete: () => {
-      gsap.set(crow, {
-        x: -200,
-        y: Math.random() * window.innerHeight * 0.4,
-        scale: 0.8 + Math.random() * 0.5,
-        rotation: -15 + Math.random() * 30
-      });
-      animateCrow(crow);
-    }
   });
 }
 
