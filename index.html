@@ -13,13 +13,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <style>
-    .log-entry {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .log-entry:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
     body {
       font-family: 'Helvetica Neue', sans-serif;
       background-color: #fffdf6; /* Soft off-white */
@@ -30,20 +23,36 @@
       padding: 60px 20px;
     }
     #hero {
-      background: linear-gradient(135deg, #f0e8c2, #fff3b0); /* Soft gold/beige */
-      color: #5b421b; /* Earthy brown */
+      background: linear-gradient(135deg, #f0e8c2, #fff3b0); /* Gold/Beige */
+      color: #5b421b;
     }
     #about {
-      background-color: #faf5e4; /* Soft parchment */
+      background-color: #faf5e4; /* Parchment */
       color: #2c2c2c;
     }
     #logs {
-      background-color: #e2f0d9; /* Gentle pale green */
+      background-color: #e2f0d9; /* Pale green */
       color: #2f3e2e;
     }
     #conclusion {
-      background-color: #fbe9e7; /* Soft rose peach */
+      background-color: #fbe9e7; /* Soft peach */
       color: #4a2f2f;
+    }
+    .log-entry {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .log-entry:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    #particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
     }
     nav {
       background-color: rgba(255, 255, 255, 0.85);
@@ -57,8 +66,13 @@
     }
   </style>
 </head>
+
 <body class="overflow-x-hidden">
 
+<!-- Particles background -->
+<div id="particles"></div>
+
+<!-- Navbar -->
 <nav id="navbar" class="fixed top-0 w-full flex justify-between items-center px-8 py-4 z-50 transition-all duration-500">
   <div class="text-2xl font-bold">Corvid Genetics</div>
   <div class="space-x-6">
@@ -79,7 +93,7 @@
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4">The Experiment</h2>
     <p class="text-lg leading-relaxed">
-      Crows are already among the smartest animals on Earth — capable of memory, communication, and basic tools. Yet they never built societies. In this thought experiment, we imagine artificially accelerating crow evolution to observe how intelligence creates culture, belief systems, and possibly... religion.
+      Crows are among the smartest animals — capable of memory, communication, and basic tools. Yet they never built societies. What would happen if we accelerated their evolution?
     </p>
   </div>
 </section>
@@ -91,15 +105,15 @@
     <div class="space-y-8">
       <div class="log-entry">
         <h3 class="text-2xl font-semibold">Day 30 – Symbolic Burials</h3>
-        <p>Crows begin burying shiny objects in specific locations. Early signs of ritual behavior emerge.</p>
+        <p>Crows begin burying shiny objects. Early signs of ritual behavior emerge.</p>
       </div>
       <div class="log-entry">
         <h3 class="text-2xl font-semibold">Day 100 – Totemic Behavior</h3>
-        <p>Groups start gathering around specific objects. One group is observed 'dancing' during storms. Are they interpreting weather as supernatural?</p>
+        <p>Groups gather around specific objects, mimicking worship behaviors during storms.</p>
       </div>
       <div class="log-entry">
         <h3 class="text-2xl font-semibold">Day 300 – Emergence of Sky Deity</h3>
-        <p>A story is repeatedly mimed by older crows: a giant bird in the sky brings light and death. Religion... has begun.</p>
+        <p>Older crows repeatedly act out a sky god story — religion... has begun.</p>
       </div>
     </div>
   </div>
@@ -110,18 +124,19 @@
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4">Final Thoughts</h2>
     <p class="text-lg leading-relaxed">
-      As we observe crow society evolve, a key question emerges: is religion a natural byproduct of intelligence, or a unique artifact of human consciousness? If crows create belief systems, what does that say about our own?
+      If crows can create gods, myths, and society when given the spark of intelligence, what does it reveal about humanity’s origins?
     </p>
   </div>
 </section>
 
+<!-- Scripts -->
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
+  // Typing Hero Title
   const text = "Corvid Genetics";
   const title = document.getElementById("hero-title");
   let index = 0;
-
   function typeWriter() {
     if (index < text.length) {
       title.innerHTML += text.charAt(index);
@@ -138,6 +153,41 @@
     onComplete: typeWriter
   });
 
+  // Hero Title Glow
+  gsap.to("#hero-title", {
+    textShadow: "0px 0px 20px #ffe59d, 0px 0px 40px #ffe59d",
+    repeat: -1,
+    yoyo: true,
+    duration: 2,
+    ease: "power1.inOut"
+  });
+
+  // Floating Particles
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement("div");
+    particle.classList.add("particle");
+    document.getElementById("particles").appendChild(particle);
+  }
+  gsap.utils.toArray(".particle").forEach((p) => {
+    gsap.set(p, {
+      width: "6px",
+      height: "6px",
+      backgroundColor: "white",
+      borderRadius: "50%",
+      opacity: 0.2,
+      position: "absolute",
+      top: Math.random() * window.innerHeight,
+      left: Math.random() * window.innerWidth
+    });
+    gsap.to(p, {
+      y: -100,
+      duration: 10 + Math.random() * 10,
+      repeat: -1,
+      ease: "none"
+    });
+  });
+
+  // Navbar Scroll Effect
   window.addEventListener("scroll", function () {
     const navbar = document.getElementById("navbar");
     if (window.scrollY > 50) {
@@ -147,12 +197,14 @@
     }
   });
 
+  // Sections Animate Slide + Rotation
   gsap.utils.toArray("section").forEach((section) => {
     gsap.from(section, {
       opacity: 0,
-      y: 50,
-      duration: 1.2,
-      ease: "power2.out",
+      y: 100,
+      rotation: 2,
+      duration: 1.5,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: section,
         start: "top 80%",
@@ -161,23 +213,15 @@
     });
   });
 
-  gsap.utils.toArray("section").forEach((section) => {
-    gsap.to(section, {
-      backgroundPosition: "50% 100%",
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        scrub: true
-      }
-    });
-  });
-
+  // Research Logs Bounce
   gsap.utils.toArray(".log-entry").forEach((entry, i) => {
     gsap.from(entry, {
       opacity: 0,
       y: 50,
-      duration: 1,
-      delay: i * 0.3,
+      scale: 0.8,
+      duration: 1.2,
+      delay: i * 0.2,
+      ease: "elastic.out(1, 0.5)",
       scrollTrigger: {
         trigger: entry,
         start: "top 90%",
@@ -186,7 +230,8 @@
     });
   });
 
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  // Smooth Scroll Links
+  document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
     anchor.addEventListener("click", function(e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute("href"));
