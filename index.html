@@ -96,11 +96,79 @@
     </div>
   </section>
 
-  <!-- Religion (accordions unchanged) -->
+  <!-- Religion (accordions with deep dive content) -->
   <section id="religion" class="relative z-10 bg-[#e8eaf6] text-[#1a237e]">
     <div class="max-w-4xl mx-auto space-y-6">
       <h2 class="text-4xl font-bold mb-6 section-title">Crows in Religion</h2>
-      <!-- ... your <details> blocks from before ... -->
+
+      <!-- Christianity -->
+      <details class="bg-white rounded-xl p-6 shadow-md group">
+        <summary class="flex justify-between items-center">
+          <span class="text-2xl font-semibold">Christianity</span>
+          <span class="transition-transform duration-200 group-open:rotate-45">+</span>
+        </summary>
+        <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
+          <p><strong>Biblical symbolism:</strong> In Matthew 6:26–29 and Luke 12:24, Jesus points to “ravens” as creatures God feeds—using a scavenger bird to show that God’s care reaches even the lowliest of creatures.</p>
+          <p><strong>Monastic traditions:</strong> Legends tell of hermit saints like St. Benedict being fed by ravens when human helpers failed—casting the crow as God’s provision-carrier.</p>
+          <p><strong>Moral lessons:</strong> By spotlighting a bird known for scavenging, the stories teach believers humility and trust—reminding them they need not hoard or worry, because divine provision will come.</p>
+          <blockquote class="mt-4 italic border-l-4 border-[#ffe59d] pl-4">
+            “Are not two sparrows sold for a penny? Yet not one of them will fall to the ground outside your Father’s care.”<br />
+            <span class="font-semibold">— Matthew 10:29</span>
+          </blockquote>
+        </div>
+      </details>
+
+      <!-- Norse Mythology -->
+      <details class="bg-white rounded-xl p-6 shadow-md group">
+        <summary class="flex justify-between items-center">
+          <span class="text-2xl font-semibold">Norse Mythology</span>
+          <span class="transition-transform duration-200 group-open:rotate-45">+</span>
+        </summary>
+        <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
+          <p><strong>World-spanning scouts:</strong> Each dawn, Huginn (“Thought”) and Muninn (“Memory”) fly the Nine Worlds to gather news and whisper it into Odin’s ear—making the raven a bridge to divine wisdom.</p>
+          <p><strong>Runic associations:</strong> The same keen, far-seeing nature of the ravens mirrors the runic lore’s power to reveal hidden truths, as described in the Hávamál.</p>
+          <p><strong>War imagery:</strong> Ravens circling battlefields—feeding on fallen warriors—tie into Valkyrie motifs, casting the crow as psychopomp guiding souls to Valhalla.</p>
+          <blockquote class="mt-4 italic border-l-4 border-[#c5cae9] pl-4">
+            “Muninn daily flies about the world. I fear for Huginn, that he come not back, yet more anxious am I for Muninn.”<br />
+            <span class="font-semibold">— Hávamál, stanza 19</span>
+          </blockquote>
+        </div>
+      </details>
+
+      <!-- Hinduism -->
+      <details class="bg-white rounded-xl p-6 shadow-md group">
+        <summary class="flex justify-between items-center">
+          <span class="text-2xl font-semibold">Hinduism</span>
+          <span class="transition-transform duration-200 group-open:rotate-45">+</span>
+        </summary>
+        <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
+          <p><strong>Śrāddha &amp; Pitru Paksha:</strong> During anniversary rites, food laid out for ancestors is accepted by descending crows—believed to be the departed souls themselves.</p>
+          <p><strong>Messenger role:</strong> The Garuda Purana calls the crow “Pitṛnām vipākakartā” (the doer of ancestral rites), cementing its status as an intermediary.</p>
+          <p><strong>Folk stories:</strong> Tales abound of crows guiding lost pilgrims or carrying divine messages, reinforcing their role as ancestral messengers.</p>
+          <blockquote class="mt-4 italic border-l-4 border-[#e8eaf6] pl-4">
+            “May these offerings reach our forebears, carried on the wings of the humble crow.”<br />
+            <span class="font-semibold">— traditional śrāddha mantra</span>
+          </blockquote>
+        </div>
+      </details>
+
+      <!-- Native American Traditions -->
+      <details class="bg-white rounded-xl p-6 shadow-md group">
+        <summary class="flex justify-between items-center">
+          <span class="text-2xl font-semibold">Native American Traditions</span>
+          <span class="transition-transform duration-200 group-open:rotate-45">+</span>
+        </summary>
+        <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
+          <p><strong>Trickster-teacher:</strong> In Pueblo myths, Crow steals fire for humanity; among the Haida, Raven shapes the world and frees the first people—crediting the crow with ingenuity and change.</p>
+          <p><strong>Clan significance:</strong> Tribes like the Abenaki and Caddo trace lineages to the Crow clan, adopting its adaptability and cunning as ancestral traits.</p>
+          <p><strong>Spiritual guide:</strong> A crow sighting is read as an omen or message—its remarkable observational skills symbolizing vision, prophecy, and vigilance on the spiritual path.</p>
+          <blockquote class="mt-4 italic border-l-4 border-[#dcedc8] pl-4">
+            “When the crow calls, listen: change is coming on the wind.”<br />
+            <span class="font-semibold">— Lakota proverb</span>
+          </blockquote>
+        </div>
+      </details>
+
     </div>
   </section>
 
@@ -137,7 +205,7 @@
       onComplete: typeWriter
     });
 
-    // Glow & particles (same as before)
+    // Glow & particles
     gsap.to("#hero-title", {
       textShadow: "0 0 20px #ffe59d, 0 0 40px #ffe59d",
       repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut"
@@ -179,7 +247,7 @@
       });
     });
 
-    // ←––– NEW: Parallax setup –––→
+    // Parallax setup
     gsap.utils.toArray("[data-speed]").forEach(el => {
       const speed = parseFloat(el.dataset.speed);
       gsap.to(el, {
