@@ -177,19 +177,20 @@ gsap.to("#hero-title", {
   ease: "power1.inOut"
 });
 
-// Floating particles
+// Floating particles (larger)
 for (let i = 0; i < 40; i++) {
   const p = document.createElement("div");
   p.classList.add("particle");
   document.getElementById("particles").appendChild(p);
+  const size = 10 + Math.random() * 10;
   gsap.set(p, {
-    width: "6px",
-    height: "6px",
+    width: size + "px",
+    height: size + "px",
     backgroundColor: "gold",
     borderRadius: "50%",
     top: Math.random() * window.innerHeight,
     left: Math.random() * window.innerWidth,
-    opacity: 0.1 + Math.random() * 0.3
+    opacity: 0.2 + Math.random() * 0.4
   });
   gsap.to(p, {
     y: "-=100",
