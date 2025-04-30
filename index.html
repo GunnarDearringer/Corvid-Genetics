@@ -70,26 +70,20 @@
 
 <body>
 
-<!-- Intro Blackout -->
 <div id="intro-overlay"></div>
-
-<!-- Sunrise Glow -->
 <div id="sunrise-glow"></div>
-
-<!-- Floating Particles -->
 <div id="particles"></div>
 
-<!-- Navbar -->
 <nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 z-50 bg-white bg-opacity-70 backdrop-blur">
   <div class="text-2xl font-bold">Corvid Genetics</div>
   <div class="space-x-6">
     <a href="#about">About</a>
     <a href="#logs">Logs</a>
+    <a href="#religion">Religion</a>
     <a href="#conclusion">Conclusion</a>
   </div>
 </nav>
 
-<!-- Hero Section -->
 <section id="hero" class="flex flex-col justify-center items-center text-center">
   <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6"></h1>
   <p class="text-xl md:text-2xl max-w-xl">
@@ -97,7 +91,6 @@
   </p>
 </section>
 
-<!-- About Section -->
 <section id="about" class="relative z-10 bg-[#faf5e4] text-[#2c2c2c]">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4 section-title">The Experiment</h2>
@@ -107,7 +100,6 @@
   </div>
 </section>
 
-<!-- Logs Section -->
 <section id="logs" class="relative z-10 bg-[#e2f0d9] text-[#2f3e2e]">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4 section-title">Research Logs</h2>
@@ -128,7 +120,30 @@
   </div>
 </section>
 
-<!-- Conclusion Section -->
+<section id="religion" class="relative z-10 bg-[#e8eaf6] text-[#1a237e]">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold mb-6 section-title">Crows in Religion</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <h3 class="text-2xl font-semibold mb-2">Christianity</h3>
+        <p>In Christianity, crows are mentioned in the Bible as creatures that God provides for. They symbolize God's care for all living things, even those considered unclean.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <h3 class="text-2xl font-semibold mb-2">Norse Mythology</h3>
+        <p>In Norse mythology, the god Odin had two ravens (close relatives of crows), Huginn and Muninn, who flew around the world to bring him knowledge. They symbolize wisdom and thought.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <h3 class="text-2xl font-semibold mb-2">Hinduism</h3>
+        <p>In Hindu beliefs, crows are considered messengers of ancestors. During certain rituals, offerings are made to crows to honor the dead and seek blessings.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <h3 class="text-2xl font-semibold mb-2">Native American Traditions</h3>
+        <p>Among some Native American tribes, crows are seen as symbols of transformation, intelligence, and spiritual insight. They are often viewed as guides or guardians.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="conclusion" class="relative z-10 bg-[#fbe9e7] text-[#4a2f2f]">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold mb-4 section-title">Final Thoughts</h2>
@@ -177,7 +192,7 @@ gsap.to("#hero-title", {
   ease: "power1.inOut"
 });
 
-// Floating particles (more and interactive)
+// Particles
 const particleCount = 100;
 const particles = [];
 for (let i = 0; i < particleCount; i++) {
@@ -198,9 +213,7 @@ for (let i = 0; i < particleCount; i++) {
   });
   particles.push({ el: p, x: startX, y: startY });
 }
-
-// Move particles with basic float
-particles.forEach((p, i) => {
+particles.forEach((p) => {
   gsap.to(p.el, {
     y: p.y - 100,
     duration: 15 + Math.random() * 10,
@@ -209,8 +222,6 @@ particles.forEach((p, i) => {
     ease: "sine.inOut"
   });
 });
-
-// Repel particles from mouse
 window.addEventListener("mousemove", (e) => {
   particles.forEach((p) => {
     const dx = p.x - e.clientX;
@@ -237,7 +248,7 @@ window.addEventListener("mousemove", (e) => {
   });
 });
 
-// Animate section titles
+// Section title animation
 document.querySelectorAll(".section-title").forEach(title => {
   const text = title.innerText;
   title.innerHTML = "";
