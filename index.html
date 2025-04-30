@@ -30,9 +30,9 @@
       position: relative;
       overflow: hidden;
     }
+    /* overlay & glow */
     #intro-overlay, #sunrise-glow {
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none;
     }
@@ -42,28 +42,28 @@
     }
     #sunrise-glow {
       background: radial-gradient(circle at top center, rgba(255, 140, 0, 0.95) 0%, transparent 50%);
-      z-index: -10;
-      animation: glowPulse 10s ease-in-out infinite alternate;
       filter: blur(40px);
+      animation: glowPulse 10s ease-in-out infinite alternate;
+      z-index: -10;
     }
-    @keyframes glowPulse { from { opacity: 0.5; } to { opacity: 1; } }
+    @keyframes glowPulse { from { opacity: 0.5 } to { opacity: 1 } }
 
-    /* particles container above nav */
+    /* nav always z-50 */
+    nav { z-index: 50; }
+
+    /* particles container */
     #particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
-      z-index: 60; /* above nav z-index:50 */
+      z-index: 60;
     }
-
+    /* each particle above the nav */
     .particle {
       position: absolute;
-      /* size, color, and motion set via JS */
       border-radius: 50%;
       pointer-events: none;
+      z-index: 61;
     }
 
     .section-title span {
@@ -71,18 +71,25 @@
       opacity: 0;
       transform: translateY(20px);
     }
-    summary { list-style: none; cursor: pointer; }
-    summary::-webkit-details-marker { display: none; }
+    /* accordion styling */
+    summary {
+      list-style: none;
+      cursor: pointer;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- intro + glow -->
   <div id="intro-overlay"></div>
   <div id="sunrise-glow"></div>
-  <div id="particles"></div>
 
-  <nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 z-50 bg-white bg-opacity-70 backdrop-blur">
+  <!-- nav -->
+  <nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 bg-white bg-opacity-70 backdrop-blur">
     <div class="text-2xl font-bold">Corvid Genetics</div>
     <div class="space-x-6">
       <a href="#about">About</a>
@@ -91,6 +98,9 @@
       <a href="#conclusion">Conclusion</a>
     </div>
   </nav>
+
+  <!-- now particles on top -->
+  <div id="particles"></div>
 
   <!-- Hero -->
   <section id="hero" class="flex flex-col justify-center items-center text-center">
@@ -131,7 +141,7 @@
     </div>
   </section>
 
-  <!-- Religion (with deep-dive accordions) -->
+  <!-- Religion -->
   <section id="religion" class="relative z-10 bg-[#e8eaf6] text-[#1a237e]">
     <div class="max-w-4xl mx-auto space-y-6">
       <h2 class="text-4xl font-bold mb-6 section-title">Crows in Religion</h2>
@@ -238,15 +248,15 @@
     // Title glow
     gsap.to("#hero-title", { textShadow: "0 0 20px #ffe59d, 0 0 40px #ffe59d", repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut" });
 
-    // Particles setup & interaction
+    // Particles
     const particles = [];
     for (let j = 0; j < 100; j++) {
       const p = document.createElement("div");
       p.classList.add("particle");
       document.getElementById("particles").appendChild(p);
       const size = 10 + Math.random() * 10;
-      const x = Math.random() * innerWidth;
-      const y = Math.random() * innerHeight;
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
       gsap.set(p, { width: size, height: size, backgroundColor: "gold", top: y, left: x, opacity: 0.3 + Math.random() * 0.4 });
       particles.push({ el: p, x, y });
     }
@@ -286,7 +296,5 @@
       });
     });
   </script>
-
 </body>
 </html>
-
