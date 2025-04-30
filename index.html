@@ -23,13 +23,15 @@
     section {
       min-height: 100vh;
       padding: 60px 20px;
+      position: relative;
+      z-index: 10;
     }
     #hero {
       background: linear-gradient(135deg, #f0e8c2, #fff3b0);
       color: #5b421b;
       position: relative;
       overflow: hidden;
-      z-index: 1;
+      z-index: 10;
     }
     #intro-overlay {
       position: fixed;
@@ -59,7 +61,7 @@
     .particle, .crow {
       pointer-events: none;
       position: absolute;
-      z-index: 0;
+      z-index: 1;
     }
     .section-title span {
       display: inline-block;
@@ -68,258 +70,10 @@
     }
   </style>
 </head>
-
 <body>
-
-<!-- Layers -->
-<div id="intro-overlay"></div>
-<div id="sunrise-glow"></div>
-<div id="particles"></div>
-<div id="flying-crows"></div>
-
-<!-- Navbar -->
-<nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 z-50 bg-white bg-opacity-70 backdrop-blur">
-  <div class="text-2xl font-bold">Corvid Genetics</div>
-  <div class="space-x-6">
-    <a href="#about">About</a>
-    <a href="#logs">Logs</a>
-    <a href="#religion">Religion</a>
-    <a href="#conclusion">Conclusion</a>
-  </div>
-</nav>
-
-<!-- Hero Section -->
-<section id="hero" class="flex flex-col justify-center items-center text-center">
-  <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6"></h1>
-  <p class="text-xl md:text-2xl max-w-xl">
-    What if crows evolved intelligence like ours? Would they create gods, myths, rituals?
-  </p>
-</section>
-
-<!-- About Section -->
-<section id="about" class="relative z-10 bg-[#faf5e4] text-[#2c2c2c]">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-4xl font-bold mb-4 section-title">The Experiment</h2>
-    <p class="text-lg leading-relaxed">
-      Crows are among the smartest animals — capable of memory, communication, and basic tools. Yet they never built societies.
-    </p>
-  </div>
-</section>
-
-<!-- Logs Section -->
-<section id="logs" class="relative z-10 bg-[#e2f0d9] text-[#2f3e2e]">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-4xl font-bold mb-4 section-title">Research Logs</h2>
-    <div class="space-y-8">
-      <div class="log-entry">
-        <h3 class="text-2xl font-semibold">Day 30 – Symbolic Burials</h3>
-        <p>Crows bury shiny objects — ritual behavior begins.</p>
-      </div>
-      <div class="log-entry">
-        <h3 class="text-2xl font-semibold">Day 100 – Totemic Behavior</h3>
-        <p>Crows gather around totems, dance during storms.</p>
-      </div>
-      <div class="log-entry">
-        <h3 class="text-2xl font-semibold">Day 300 – Emergence of Sky Deity</h3>
-        <p>Sky god myths are passed among crows.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Religion Section -->
-<section id="religion" class="relative z-10 bg-[#e8eaf6] text-[#1a237e]">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-4xl font-bold mb-6 section-title">Crows in Religion</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-white rounded-xl p-6 shadow-md">
-        <h3 class="text-2xl font-semibold mb-2">Christianity</h3>
-        <p>In Christianity, crows are mentioned in the Bible as creatures that God provides for. They symbolize God's care for all living things.</p>
-      </div>
-      <div class="bg-white rounded-xl p-6 shadow-md">
-        <h3 class="text-2xl font-semibold mb-2">Norse Mythology</h3>
-        <p>Odin had two ravens, Huginn and Muninn, who brought him wisdom. Crows are close relatives and represent thought and memory.</p>
-      </div>
-      <div class="bg-white rounded-xl p-6 shadow-md">
-        <h3 class="text-2xl font-semibold mb-2">Hinduism</h3>
-        <p>Crows are messengers of ancestors. People offer food to them in rituals to honor the dead and seek blessings.</p>
-      </div>
-      <div class="bg-white rounded-xl p-6 shadow-md">
-        <h3 class="text-2xl font-semibold mb-2">Native American</h3>
-        <p>Crows are seen as spiritual guides, symbols of intelligence and transformation across several tribes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Conclusion Section -->
-<section id="conclusion" class="relative z-10 bg-[#fbe9e7] text-[#4a2f2f]">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-4xl font-bold mb-4 section-title">Final Thoughts</h2>
-    <p class="text-lg leading-relaxed">
-      If crows can create gods, myths, and society when given the spark of intelligence — what does that say about humanity's own origins?
-    </p>
-  </div>
-</section>
-
-<script>
-gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
-// Intro fade
-gsap.to("#intro-overlay", {
-  opacity: 0,
-  duration: 2,
-  delay: 1,
-  onComplete: () => document.getElementById("intro-overlay").remove()
-});
-
-// Typing title
-const text = "Corvid Genetics";
-const title = document.getElementById("hero-title");
-let index = 0;
-function typeWriter() {
-  if (index < text.length) {
-    title.innerHTML += text.charAt(index);
-    index++;
-    setTimeout(typeWriter, 100);
-  }
-}
-gsap.from("#hero", {
-  opacity: 0,
-  scale: 0.8,
-  duration: 2,
-  ease: "power2.out",
-  onComplete: typeWriter
-});
-
-// Hero glow
-gsap.to("#hero-title", {
-  textShadow: "0px 0px 20px #ffe59d, 0px 0px 40px #ffe59d",
-  repeat: -1,
-  yoyo: true,
-  duration: 2,
-  ease: "power1.inOut"
-});
-
-// Particles
-const particleCount = 100;
-const particles = [];
-for (let i = 0; i < particleCount; i++) {
-  const p = document.createElement("div");
-  p.classList.add("particle");
-  document.getElementById("particles").appendChild(p);
-  const size = 10 + Math.random() * 10;
-  const startX = Math.random() * window.innerWidth;
-  const startY = Math.random() * window.innerHeight;
-  gsap.set(p, {
-    width: size + "px",
-    height: size + "px",
-    backgroundColor: "gold",
-    borderRadius: "50%",
-    top: startY,
-    left: startX,
-    opacity: 0.3 + Math.random() * 0.4
-  });
-  particles.push({ el: p, x: startX, y: startY });
-}
-particles.forEach((p) => {
-  gsap.to(p.el, {
-    y: p.y - 100,
-    duration: 15 + Math.random() * 10,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut"
-  });
-});
-window.addEventListener("mousemove", (e) => {
-  particles.forEach((p) => {
-    const dx = p.x - e.clientX;
-    const dy = p.y - e.clientY;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist < 150) {
-      const angle = Math.atan2(dy, dx);
-      const tx = e.clientX + Math.cos(angle) * 150;
-      const ty = e.clientY + Math.sin(angle) * 150;
-      gsap.to(p.el, {
-        x: tx - p.x,
-        y: ty - p.y,
-        duration: 0.5,
-        ease: "power3.out"
-      });
-    } else {
-      gsap.to(p.el, {
-        x: 0,
-        y: 0,
-        duration: 1,
-        ease: "power3.out"
-      });
-    }
-  });
-});
-
-// Flying crows
-const crowCount = 7;
-for (let i = 0; i < crowCount; i++) {
-  const crow = document.createElement("div");
-  crow.classList.add("crow");
-  document.getElementById("flying-crows").appendChild(crow);
-  gsap.set(crow, {
-    backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/7/71/Crow_silhouette.png')",
-    backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    width: 40 + Math.random() * 40 + "px",
-    height: 40 + Math.random() * 40 + "px",
-    top: Math.random() * window.innerHeight * 0.4,
-    left: -200,
-    opacity: 0.6 + Math.random() * 0.3,
-    scale: 0.8 + Math.random() * 0.5,
-    rotation: -15 + Math.random() * 30
-  });
-  animateCrow(crow);
-}
-function animateCrow(crow) {
-  const duration = 12 + Math.random() * 8;
-  const flap = gsap.timeline({ repeat: -1, yoyo: true });
-  flap.to(crow, { scaleY: 0.9, rotation: "+=5", duration: 0.6, ease: "power1.inOut" })
-      .to(crow, { scaleY: 1.1, rotation: "-=5", duration: 0.6, ease: "power1.inOut" });
-  gsap.to(crow, {
-    x: window.innerWidth + 300,
-    y: "+=" + (Math.random() * 100 - 50),
-    duration: duration,
-    ease: "linear",
-    onComplete: () => {
-      gsap.set(crow, {
-        x: -200,
-        y: Math.random() * window.innerHeight * 0.4,
-        scale: 0.8 + Math.random() * 0.5,
-        rotation: -15 + Math.random() * 30
-      });
-      animateCrow(crow);
-    }
-  });
-}
-
-// Animate section titles
-document.querySelectorAll(".section-title").forEach(title => {
-  const text = title.innerText;
-  title.innerHTML = "";
-  text.split("").forEach((letter, i) => {
-    const span = document.createElement("span");
-    span.textContent = letter;
-    title.appendChild(span);
-    gsap.to(span, {
-      delay: i * 0.05,
-      opacity: 1,
-      y: 0,
-      ease: "back.out(1.7)",
-      scrollTrigger: {
-        trigger: title,
-        start: "top 80%"
-      }
-    });
-  });
-});
-</script>
-
+  <div id="intro-overlay"></div>
+  <div id="sunrise-glow"></div>
+  <div id="particles"></div>
+  <div id="flying-crows"></div>
 </body>
 </html>
