@@ -47,12 +47,25 @@
       filter: blur(40px);
     }
     @keyframes glowPulse { from { opacity: 0.5; } to { opacity: 1; } }
+
+    /* particles container above nav */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 60; /* above nav z-index:50 */
+    }
+
     .particle {
       position: absolute;
-      pointer-events: none;
+      /* size, color, and motion set via JS */
       border-radius: 50%;
-      z-index: 1;
+      pointer-events: none;
     }
+
     .section-title span {
       display: inline-block;
       opacity: 0;
@@ -225,7 +238,7 @@
     // Title glow
     gsap.to("#hero-title", { textShadow: "0 0 20px #ffe59d, 0 0 40px #ffe59d", repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut" });
 
-    // Particles
+    // Particles setup & interaction
     const particles = [];
     for (let j = 0; j < 100; j++) {
       const p = document.createElement("div");
@@ -237,7 +250,13 @@
       gsap.set(p, { width: size, height: size, backgroundColor: "gold", top: y, left: x, opacity: 0.3 + Math.random() * 0.4 });
       particles.push({ el: p, x, y });
     }
-    particles.forEach(p => gsap.to(p.el, { y: p.y - 100, duration: 15 + Math.random() * 10, repeat: -1, yoyo: true, ease: "sine.inOut" }));
+    particles.forEach(p => gsap.to(p.el, {
+      y: p.y - 100,
+      duration: 15 + Math.random() * 10,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    }));
     window.addEventListener("mousemove", e => {
       particles.forEach(p => {
         const dx = p.x - e.clientX, dy = p.y - e.clientY;
@@ -270,3 +289,4 @@
 
 </body>
 </html>
+
