@@ -30,34 +30,27 @@
       position: relative;
       overflow: hidden;
     }
-    #intro-overlay {
+    #intro-overlay, #sunrise-glow {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    #intro-overlay {
       background-color: #000;
       z-index: 9999;
     }
     #sunrise-glow {
       background: radial-gradient(circle at top center, rgba(255, 140, 0, 0.95) 0%, transparent 50%);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
       z-index: -10;
       animation: glowPulse 10s ease-in-out infinite alternate;
       filter: blur(40px);
     }
-    @keyframes glowPulse {
-      from { opacity: 0.5; }
-      to { opacity: 1; }
-    }
+    @keyframes glowPulse { from { opacity: 0.5; } to { opacity: 1; } }
     .particle {
-      pointer-events: none;
       position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
       z-index: 1;
     }
     .section-title span {
@@ -65,13 +58,8 @@
       opacity: 0;
       transform: translateY(20px);
     }
-    /* Hide default summary marker */
-    summary {
-      list-style: none;
-    }
-    summary::-webkit-details-marker {
-      display: none;
-    }
+    summary { list-style: none; cursor: pointer; }
+    summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 
@@ -114,15 +102,15 @@
     <div class="max-w-4xl mx-auto">
       <h2 class="text-4xl font-bold mb-4 section-title">Research Logs</h2>
       <div class="space-y-8">
-        <div class="log-entry">
+        <div>
           <h3 class="text-2xl font-semibold">Day 30 – Symbolic Burials</h3>
           <p>Crows bury shiny objects — ritual behavior begins.</p>
         </div>
-        <div class="log-entry">
+        <div>
           <h3 class="text-2xl font-semibold">Day 100 – Totemic Behavior</h3>
           <p>Crows gather around totems, dance during storms.</p>
         </div>
-        <div class="log-entry">
+        <div>
           <h3 class="text-2xl font-semibold">Day 300 – Emergence of Sky Deity</h3>
           <p>Sky god myths are passed among crows.</p>
         </div>
@@ -130,78 +118,79 @@
     </div>
   </section>
 
-  <!-- Religion (with accordions) -->
+  <!-- Religion (with deep-dive accordions) -->
   <section id="religion" class="relative z-10 bg-[#e8eaf6] text-[#1a237e]">
     <div class="max-w-4xl mx-auto space-y-6">
       <h2 class="text-4xl font-bold mb-6 section-title">Crows in Religion</h2>
 
       <!-- Christianity -->
       <details class="bg-white rounded-xl p-6 shadow-md group">
-        <summary class="flex justify-between items-center cursor-pointer">
+        <summary class="flex justify-between items-center">
           <span class="text-2xl font-semibold">Christianity</span>
           <span class="transition-transform duration-200 group-open:rotate-45">+</span>
         </summary>
         <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
-          <p>
-            In Christianity, crows are mentioned in the Bible as creatures God provides for, symbolizing His care for all—even those deemed “unclean.”
-          </p>
+          <p><strong>Biblical symbolism:</strong> In Matthew 6:26–29 and Luke 12:24, Jesus points to “ravens” as creatures God feeds—using a scavenger bird to show that God’s care reaches even the lowliest of creatures.</p>
+          <p><strong>Monastic traditions:</strong> Legends tell of hermit saints like St. Benedict being fed by ravens when human helpers failed—casting the crow as God’s provision-carrier.</p>
+          <p><strong>Moral lessons:</strong> By spotlighting a bird known for scavenging, the stories teach believers humility and trust—reminding them they need not hoard or worry, because divine provision will come.</p>
           <blockquote class="mt-4 italic border-l-4 border-[#ffe59d] pl-4">
-            “Are not two sparrows sold for a penny? Yet not one of them will fall to the ground outside your Father’s care.”  
-            <br /><span class="font-semibold">— Matthew 10:29</span>
+            “Are not two sparrows sold for a penny? Yet not one of them will fall to the ground outside your Father’s care.”<br />
+            <span class="font-semibold">— Matthew 10:29</span>
           </blockquote>
         </div>
       </details>
 
       <!-- Norse Mythology -->
       <details class="bg-white rounded-xl p-6 shadow-md group">
-        <summary class="flex justify-between items-center cursor-pointer">
+        <summary class="flex justify-between items-center">
           <span class="text-2xl font-semibold">Norse Mythology</span>
           <span class="transition-transform duration-200 group-open:rotate-45">+</span>
         </summary>
         <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
-          <p>
-            Odin’s ravens, Huginn (Thought) and Muninn (Memory), roam Midgard and bring back news—crows as wisdom–bearers.
-          </p>
+          <p><strong>World-spanning scouts:</strong> Each dawn, Huginn (“Thought”) and Muninn (“Memory”) fly the Nine Worlds to gather news and whisper it into Odin’s ear—making the raven a bridge to divine wisdom.</p>
+          <p><strong>Runic associations:</strong> The same keen, far-seeing nature of the ravens mirrors the runic lore’s power to reveal hidden truths, as described in the Hávamál.</p>
+          <p><strong>War imagery:</strong> Ravens circling battlefields—feeding on fallen warriors—tie into Valkyrie motifs, casting the crow as psychopomp guiding souls to Valhalla.</p>
           <blockquote class="mt-4 italic border-l-4 border-[#c5cae9] pl-4">
-            “Muninn daily flies about the world. I fear for Huginn, that he come not back, yet more anxious am I for Muninn.”  
-            <br /><span class="font-semibold">— Hávamál, stanza 19</span>
+            “Muninn daily flies about the world. I fear for Huginn, that he come not back, yet more anxious am I for Muninn.”<br />
+            <span class="font-semibold">— Hávamál, stanza 19</span>
           </blockquote>
         </div>
       </details>
 
       <!-- Hinduism -->
       <details class="bg-white rounded-xl p-6 shadow-md group">
-        <summary class="flex justify-between items-center cursor-pointer">
+        <summary class="flex justify-between items-center">
           <span class="text-2xl font-semibold">Hinduism</span>
           <span class="transition-transform duration-200 group-open:rotate-45">+</span>
         </summary>
         <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
-          <p>
-            In many Hindu rituals, food offerings are laid out for crows as messengers of the ancestors—symbolic “feeding” of the departed.
-          </p>
+          <p><strong>Śrāddha &amp; Pitru Paksha:</strong> During anniversary rites, food laid out for ancestors is accepted by descending crows—believed to be the departed souls themselves.</p>
+          <p><strong>Messenger role:</strong> The Garuda Purana calls the crow “Pitṛnām vipākakartā” (the doer of ancestral rites), cementing its status as an intermediary.</p>
+          <p><strong>Folk stories:</strong> Tales abound of crows guiding lost pilgrims or carrying divine messages, reinforcing their role as ancestral messengers.</p>
           <blockquote class="mt-4 italic border-l-4 border-[#e8eaf6] pl-4">
-            “May these offerings reach our forebears, carried on the wings of the humble crow.”  
-            <br /><span class="font-semibold">— traditional śrāddha mantra</span>
+            “May these offerings reach our forebears, carried on the wings of the humble crow.”<br />
+            <span class="font-semibold">— traditional śrāddha mantra</span>
           </blockquote>
         </div>
       </details>
 
       <!-- Native American Traditions -->
       <details class="bg-white rounded-xl p-6 shadow-md group">
-        <summary class="flex justify-between items-center cursor-pointer">
+        <summary class="flex justify-between items-center">
           <span class="text-2xl font-semibold">Native American Traditions</span>
           <span class="transition-transform duration-200 group-open:rotate-45">+</span>
         </summary>
         <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
-          <p>
-            Crows are often seen as spirit-guides—symbols of transformation and insight—appearing in stories and teachings.
-          </p>
+          <p><strong>Trickster-teacher:</strong> In Pueblo myths, Crow steals fire for humanity; among the Haida, Raven shapes the world and frees the first people—crediting the crow with ingenuity and change.</p>
+          <p><strong>Clan significance:</strong> Tribes like the Abenaki and Caddo trace lineages to the Crow clan, adopting its adaptability and cunning as ancestral traits.</p>
+          <p><strong>Spiritual guide:</strong> A crow sighting is read as an omen or message—its remarkable observational skills symbolizing vision, prophecy, and vigilance on the spiritual path.</p>
           <blockquote class="mt-4 italic border-l-4 border-[#dcedc8] pl-4">
-            “When the crow calls, listen: change is coming on the wind.”  
-            <br /><span class="font-semibold">— Lakota proverb</span>
+            “When the crow calls, listen: change is coming on the wind.”<br />
+            <span class="font-semibold">— Lakota proverb</span>
           </blockquote>
         </div>
       </details>
+
     </div>
   </section>
 
@@ -219,114 +208,61 @@
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
     // Intro fade
-    gsap.to("#intro-overlay", {
-      opacity: 0,
-      duration: 2,
-      delay: 1,
-      onComplete: () => document.getElementById("intro-overlay").remove()
-    });
+    gsap.to("#intro-overlay", { opacity: 0, duration: 2, delay: 1, onComplete: () => document.getElementById("intro-overlay").remove() });
 
     // Hero title typing
     const text = "Corvid Genetics";
     const title = document.getElementById("hero-title");
-    let index = 0;
+    let i = 0;
     function typeWriter() {
-      if (index < text.length) {
-        title.innerHTML += text.charAt(index);
-        index++;
+      if (i < text.length) {
+        title.innerHTML += text.charAt(i++);
         setTimeout(typeWriter, 100);
       }
     }
-    gsap.from("#hero", {
-      opacity: 0,
-      scale: 0.8,
-      duration: 2,
-      ease: "power2.out",
-      onComplete: typeWriter
-    });
+    gsap.from("#hero", { opacity: 0, scale: 0.8, duration: 2, ease: "power2.out", onComplete: typeWriter });
 
-    // Title glowing
-    gsap.to("#hero-title", {
-      textShadow: "0px 0px 20px #ffe59d, 0px 0px 40px #ffe59d",
-      repeat: -1,
-      yoyo: true,
-      duration: 2,
-      ease: "power1.inOut"
-    });
+    // Title glow
+    gsap.to("#hero-title", { textShadow: "0 0 20px #ffe59d, 0 0 40px #ffe59d", repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut" });
 
     // Particles
-    const particleCount = 100;
     const particles = [];
-    for (let i = 0; i < particleCount; i++) {
+    for (let j = 0; j < 100; j++) {
       const p = document.createElement("div");
       p.classList.add("particle");
       document.getElementById("particles").appendChild(p);
       const size = 10 + Math.random() * 10;
-      const startX = Math.random() * window.innerWidth;
-      const startY = Math.random() * window.innerHeight;
-      gsap.set(p, {
-        width: size + "px",
-        height: size + "px",
-        backgroundColor: "gold",
-        borderRadius: "50%",
-        top: startY,
-        left: startX,
-        opacity: 0.3 + Math.random() * 0.4
-      });
-      particles.push({ el: p, x: startX, y: startY });
+      const x = Math.random() * innerWidth;
+      const y = Math.random() * innerHeight;
+      gsap.set(p, { width: size, height: size, backgroundColor: "gold", top: y, left: x, opacity: 0.3 + Math.random() * 0.4 });
+      particles.push({ el: p, x, y });
     }
-    particles.forEach((p) => {
-      gsap.to(p.el, {
-        y: p.y - 100,
-        duration: 15 + Math.random() * 10,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      });
-    });
-    window.addEventListener("mousemove", (e) => {
-      particles.forEach((p) => {
-        const dx = p.x - e.clientX;
-        const dy = p.y - e.clientY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          const angle = Math.atan2(dy, dx);
-          const tx = e.clientX + Math.cos(angle) * 150;
-          const ty = e.clientY + Math.sin(angle) * 150;
-          gsap.to(p.el, {
-            x: tx - p.x,
-            y: ty - p.y,
-            duration: 0.5,
-            ease: "power3.out"
-          });
-        } else {
-          gsap.to(p.el, {
-            x: 0,
-            y: 0,
-            duration: 1,
-            ease: "power3.out"
-          });
-        }
+    particles.forEach(p => gsap.to(p.el, { y: p.y - 100, duration: 15 + Math.random() * 10, repeat: -1, yoyo: true, ease: "sine.inOut" }));
+    window.addEventListener("mousemove", e => {
+      particles.forEach(p => {
+        const dx = p.x - e.clientX, dy = p.y - e.clientY;
+        const dist = Math.hypot(dx, dy);
+        gsap.to(p.el, dist < 150
+          ? { x: Math.cos(Math.atan2(dy, dx)) * 150, y: Math.sin(Math.atan2(dy, dx)) * 150, duration: 0.5, ease: "power3.out" }
+          : { x: 0, y: 0, duration: 1, ease: "power3.out" }
+        );
       });
     });
 
-    // Section title animation
-    document.querySelectorAll(".section-title").forEach(title => {
-      const text = title.innerText;
-      title.innerHTML = "";
-      text.split("").forEach((letter, i) => {
+    // Section-title reveal
+    document.querySelectorAll(".section-title").forEach(el => {
+      const txt = el.textContent;
+      el.innerHTML = "";
+      txt.split("").forEach((ch, idx) => {
         const span = document.createElement("span");
-        span.textContent = letter;
-        title.appendChild(span);
+        span.textContent = ch;
+        el.appendChild(span);
         gsap.to(span, {
-          delay: i * 0.05,
+          delay: idx * 0.05,
           opacity: 1,
           y: 0,
           ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: title,
-            start: "top 80%"
-          }
+          scrollTrigger: { trigger: el, start: "top 80%" }
         });
       });
     });
