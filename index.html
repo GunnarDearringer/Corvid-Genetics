@@ -40,7 +40,7 @@
       z-index: 9999;
     }
     #sunrise-glow {
-      background: radial-gradient(circle at top center, rgba(255, 200, 0, 0.7) 0%, transparent 60%);
+      background: radial-gradient(circle at top center, rgba(255, 140, 0, 0.95) 0%, transparent 50%);
       position: fixed;
       top: 0;
       left: 0;
@@ -49,6 +49,7 @@
       pointer-events: none;
       z-index: -10;
       animation: glowPulse 10s ease-in-out infinite alternate;
+      filter: blur(40px);
     }
     @keyframes glowPulse {
       from { opacity: 0.5; }
