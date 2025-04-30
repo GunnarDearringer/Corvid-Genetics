@@ -25,12 +25,13 @@
       padding: 60px 20px;
     }
     #hero {
+      position: relative;
       background: linear-gradient(135deg, #f0e8c2, #fff3b0);
       color: #5b421b;
-      position: relative;
       overflow: hidden;
     }
-    /* overlay & glow */
+
+    /* intro & glow full-screen */
     #intro-overlay, #sunrise-glow {
       position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
@@ -41,29 +42,37 @@
       z-index: 9999;
     }
     #sunrise-glow {
-      background: radial-gradient(circle at top center, rgba(255, 140, 0, 0.95) 0%, transparent 50%);
+      background: radial-gradient(circle at top center, rgba(255,140,0,0.95) 0%, transparent 50%);
       filter: blur(40px);
       animation: glowPulse 10s ease-in-out infinite alternate;
       z-index: -10;
     }
     @keyframes glowPulse { from { opacity: 0.5 } to { opacity: 1 } }
 
-    /* nav always z-50 */
-    nav { z-index: 50; }
-
-    /* particles container */
-    #particles {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 60;
+    /* nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 50;
     }
-    /* each particle above the nav */
+
+    /* particles restricted to hero */
+    #particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
     .particle {
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
-      z-index: 61;
+      /* appearance & motion set via JS */
+    }
+
+    /* make hero text sit above particles */
+    #hero .hero-content {
+      position: relative;
+      z-index: 2;
     }
 
     .section-title span {
@@ -71,25 +80,16 @@
       opacity: 0;
       transform: translateY(20px);
     }
-    /* accordion styling */
-    summary {
-      list-style: none;
-      cursor: pointer;
-    }
-    summary::-webkit-details-marker {
-      display: none;
-    }
+    summary { list-style: none; cursor: pointer; }
+    summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 
 <body>
-
-  <!-- intro + glow -->
   <div id="intro-overlay"></div>
   <div id="sunrise-glow"></div>
 
-  <!-- nav -->
-  <nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 bg-white bg-opacity-70 backdrop-blur">
+  <nav class="flex justify-between items-center px-8 py-4 bg-white bg-opacity-70 backdrop-blur">
     <div class="text-2xl font-bold">Corvid Genetics</div>
     <div class="space-x-6">
       <a href="#about">About</a>
@@ -99,19 +99,19 @@
     </div>
   </nav>
 
-  <!-- now particles on top -->
-  <div id="particles"></div>
-
-  <!-- Hero -->
-  <section id="hero" class="flex flex-col justify-center items-center text-center">
-    <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6"></h1>
-    <p class="text-xl md:text-2xl max-w-xl">
-      What if crows evolved intelligence like ours? Would they create gods, myths, rituals?
-    </p>
+  <!-- Hero with particles only here -->
+  <section id="hero" class="flex flex-col justify-center items-center text-center pt-16 overflow-hidden">
+    <div id="particles"></div>
+    <div class="hero-content">
+      <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6"></h1>
+      <p class="text-xl md:text-2xl max-w-xl">
+        What if crows evolved intelligence like ours? Would they create gods, myths, rituals?
+      </p>
+    </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="relative z-10 bg-[#faf5e4] text-[#2c2c2c]">
+  <section id="about" class="bg-[#faf5e4] text-[#2c2c2c]">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-4xl font-bold mb-4 section-title">The Experiment</h2>
       <p class="text-lg leading-relaxed">
@@ -121,7 +121,7 @@
   </section>
 
   <!-- Logs -->
-  <section id="logs" class="relative z-10 bg-[#e2f0d9] text-[#2f3e2e]">
+  <section id="logs" class="bg-[#e2f0d9] text-[#2f3e2e]">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-4xl font-bold mb-4 section-title">Research Logs</h2>
       <div class="space-y-8">
@@ -141,8 +141,8 @@
     </div>
   </section>
 
-  <!-- Religion -->
-  <section id="religion" class="relative z-10 bg-[#e8eaf6] text-[#1a237e]">
+  <!-- Religion (accordions) -->
+  <section id="religion" class="bg-[#e8eaf6] text-[#1a237e]">
     <div class="max-w-4xl mx-auto space-y-6">
       <h2 class="text-4xl font-bold mb-6 section-title">Crows in Religion</h2>
 
@@ -153,9 +153,9 @@
           <span class="transition-transform duration-200 group-open:rotate-45">+</span>
         </summary>
         <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
-          <p><strong>Biblical symbolism:</strong> In Matthew 6:26–29 and Luke 12:24, Jesus points to “ravens” as creatures God feeds—using a scavenger bird to show that God’s care reaches even the lowliest of creatures.</p>
+          <p><strong>Biblical symbolism:</strong> In Matthew 6:26–29 and Luke 12:24, Jesus points to “ravens” as creatures God feeds—using a scavenger bird to show that God’s care reaches even the lowliest.</p>
           <p><strong>Monastic traditions:</strong> Legends tell of hermit saints like St. Benedict being fed by ravens when human helpers failed—casting the crow as God’s provision-carrier.</p>
-          <p><strong>Moral lessons:</strong> By spotlighting a bird known for scavenging, the stories teach believers humility and trust—reminding them they need not hoard or worry, because divine provision will come.</p>
+          <p><strong>Moral lessons:</strong> By spotlighting a bird known for scavenging, the stories teach humility and trust—reminding believers they need not hoard or worry, because divine provision will come.</p>
           <blockquote class="mt-4 italic border-l-4 border-[#ffe59d] pl-4">
             “Are not two sparrows sold for a penny? Yet not one of them will fall to the ground outside your Father’s care.”<br />
             <span class="font-semibold">— Matthew 10:29</span>
@@ -171,7 +171,7 @@
         </summary>
         <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
           <p><strong>World-spanning scouts:</strong> Each dawn, Huginn (“Thought”) and Muninn (“Memory”) fly the Nine Worlds to gather news and whisper it into Odin’s ear—making the raven a bridge to divine wisdom.</p>
-          <p><strong>Runic associations:</strong> The same keen, far-seeing nature of the ravens mirrors the runic lore’s power to reveal hidden truths, as described in the Hávamál.</p>
+          <p><strong>Runic associations:</strong> Their keen, far-seeing nature mirrors the runic lore’s power to reveal hidden truths (see Hávamál).</p>
           <p><strong>War imagery:</strong> Ravens circling battlefields—feeding on fallen warriors—tie into Valkyrie motifs, casting the crow as psychopomp guiding souls to Valhalla.</p>
           <blockquote class="mt-4 italic border-l-4 border-[#c5cae9] pl-4">
             “Muninn daily flies about the world. I fear for Huginn, that he come not back, yet more anxious am I for Muninn.”<br />
@@ -187,9 +187,9 @@
           <span class="transition-transform duration-200 group-open:rotate-45">+</span>
         </summary>
         <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
-          <p><strong>Śrāddha &amp; Pitru Paksha:</strong> During anniversary rites, food laid out for ancestors is accepted by descending crows—believed to be the departed souls themselves.</p>
-          <p><strong>Messenger role:</strong> The Garuda Purana calls the crow “Pitṛnām vipākakartā” (the doer of ancestral rites), cementing its status as an intermediary.</p>
-          <p><strong>Folk stories:</strong> Tales abound of crows guiding lost pilgrims or carrying divine messages, reinforcing their role as ancestral messengers.</p>
+          <p><strong>Śrāddha & Pitru Paksha:</strong> During ancestor rites, food laid out is accepted by crows—believed to be the departed souls themselves.</p>
+          <p><strong>Messenger role:</strong> The Garuda Purana calls the crow “Pitṛnām vipākakartā” (the doer of ancestral rites), cementing its intermediary status.</p>
+          <p><strong>Folk stories:</strong> Crows guiding lost pilgrims or carrying divine messages reinforce their role as ancestral messengers.</p>
           <blockquote class="mt-4 italic border-l-4 border-[#e8eaf6] pl-4">
             “May these offerings reach our forebears, carried on the wings of the humble crow.”<br />
             <span class="font-semibold">— traditional śrāddha mantra</span>
@@ -206,19 +206,18 @@
         <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
           <p><strong>Trickster-teacher:</strong> In Pueblo myths, Crow steals fire for humanity; among the Haida, Raven shapes the world and frees the first people—crediting the crow with ingenuity and change.</p>
           <p><strong>Clan significance:</strong> Tribes like the Abenaki and Caddo trace lineages to the Crow clan, adopting its adaptability and cunning as ancestral traits.</p>
-          <p><strong>Spiritual guide:</strong> A crow sighting is read as an omen or message—its remarkable observational skills symbolizing vision, prophecy, and vigilance on the spiritual path.</p>
+          <p><strong>Spiritual guide:</strong> A crow sighting is read as an omen or message—its observational skills symbolizing vision, prophecy, and vigilance on the spiritual path.</p>
           <blockquote class="mt-4 italic border-l-4 border-[#dcedc8] pl-4">
             “When the crow calls, listen: change is coming on the wind.”<br />
             <span class="font-semibold">— Lakota proverb</span>
           </blockquote>
         </div>
       </details>
-
     </div>
   </section>
 
   <!-- Conclusion -->
-  <section id="conclusion" class="relative z-10 bg-[#fbe9e7] text-[#4a2f2f]">
+  <section id="conclusion" class="bg-[#fbe9e7] text-[#4a2f2f]">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-4xl font-bold mb-4 section-title">Final Thoughts</h2>
       <p class="text-lg leading-relaxed">
@@ -231,63 +230,81 @@
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
     // Intro fade
-    gsap.to("#intro-overlay", { opacity: 0, duration: 2, delay: 1, onComplete: () => document.getElementById("intro-overlay").remove() });
+    gsap.to("#intro-overlay", {
+      opacity: 0, duration: 2, delay: 1,
+      onComplete: () => document.getElementById("intro-overlay").remove()
+    });
 
     // Hero title typing
-    const text = "Corvid Genetics";
-    const title = document.getElementById("hero-title");
-    let i = 0;
+    const fullText = "Corvid Genetics";
+    const heroTitle = document.getElementById("hero-title");
+    let idx = 0;
     function typeWriter() {
-      if (i < text.length) {
-        title.innerHTML += text.charAt(i++);
+      if (idx < fullText.length) {
+        heroTitle.innerHTML += fullText.charAt(idx++);
         setTimeout(typeWriter, 100);
       }
     }
-    gsap.from("#hero", { opacity: 0, scale: 0.8, duration: 2, ease: "power2.out", onComplete: typeWriter });
+    gsap.from("#hero", {
+      opacity: 0, scale: 0.8, duration: 2, ease: "power2.out",
+      onComplete: typeWriter
+    });
 
     // Title glow
-    gsap.to("#hero-title", { textShadow: "0 0 20px #ffe59d, 0 0 40px #ffe59d", repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut" });
+    gsap.to("#hero-title", {
+      textShadow: "0 0 20px #ffe59d, 0 0 40px #ffe59d",
+      repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut"
+    });
 
-    // Particles
+    // Particles in hero only
     const particles = [];
-    for (let j = 0; j < 100; j++) {
+    for (let i = 0; i < 100; i++) {
       const p = document.createElement("div");
       p.classList.add("particle");
       document.getElementById("particles").appendChild(p);
       const size = 10 + Math.random() * 10;
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * window.innerHeight;
-      gsap.set(p, { width: size, height: size, backgroundColor: "gold", top: y, left: x, opacity: 0.3 + Math.random() * 0.4 });
+      const x = Math.random() * document.getElementById("hero").offsetWidth;
+      const y = Math.random() * document.getElementById("hero").offsetHeight;
+      gsap.set(p, {
+        width: size, height: size,
+        backgroundColor: "gold",
+        top: y, left: x,
+        opacity: 0.3 + Math.random() * 0.4
+      });
       particles.push({ el: p, x, y });
     }
-    particles.forEach(p => gsap.to(p.el, {
-      y: p.y - 100,
-      duration: 15 + Math.random() * 10,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    }));
+    particles.forEach(p => {
+      gsap.to(p.el, {
+        y: p.y - 50,
+        duration: 10 + Math.random() * 5,
+        repeat: -1, yoyo: true, ease: "sine.inOut"
+      });
+    });
     window.addEventListener("mousemove", e => {
+      const rect = document.getElementById("hero").getBoundingClientRect();
       particles.forEach(p => {
-        const dx = p.x - e.clientX, dy = p.y - e.clientY;
+        // ignore if outside hero
+        if (e.clientY < rect.top || e.clientY > rect.bottom) return;
+        const dx = p.x + rect.left - e.clientX;
+        const dy = p.y + rect.top - e.clientY;
         const dist = Math.hypot(dx, dy);
-        gsap.to(p.el, dist < 150
-          ? { x: Math.cos(Math.atan2(dy, dx)) * 150, y: Math.sin(Math.atan2(dy, dx)) * 150, duration: 0.5, ease: "power3.out" }
-          : { x: 0, y: 0, duration: 1, ease: "power3.out" }
+        gsap.to(p.el, dist < 100
+          ? { x: Math.cos(Math.atan2(dy, dx)) * 100, y: Math.sin(Math.atan2(dy, dx)) * 100, duration: 0.3 }
+          : { x: 0, y: 0, duration: 1 }
         );
       });
     });
 
-    // Section-title reveal
+    // Section titles animation
     document.querySelectorAll(".section-title").forEach(el => {
-      const txt = el.textContent;
+      const text = el.textContent;
       el.innerHTML = "";
-      txt.split("").forEach((ch, idx) => {
+      text.split("").forEach((ch, i) => {
         const span = document.createElement("span");
         span.textContent = ch;
         el.appendChild(span);
         gsap.to(span, {
-          delay: idx * 0.05,
+          delay: i * 0.05,
           opacity: 1,
           y: 0,
           ease: "back.out(1.7)",
