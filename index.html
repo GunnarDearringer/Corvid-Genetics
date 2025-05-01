@@ -68,6 +68,15 @@
       pointer-events: none;
       /* appearance & motion set via JS */
     }
+.crow {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background: url('crow.svg') no-repeat center/contain;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+}
 
     /* make hero text sit above particles */
     #hero .hero-content {
@@ -294,6 +303,35 @@
         );
       });
     });
+// Flying crows over hero
+const crowCount = 8;
+const hero = document.getElementById("hero");
+const heroW = hero.offsetWidth;
+const heroH = hero.offsetHeight;
+
+for (let i = 0; i < crowCount; i++) {
+  const c = document.createElement("div");
+  c.classList.add("crow");
+  hero.appendChild(c);
+
+  const startY = Math.random() * heroH * 0.6 + 20; // upper 60% of hero
+  const delay = Math.random() * 10;
+
+  gsap.set(c, { x: -60, y: startY });
+
+  gsap.to(c, {
+    x: heroW + 60,
+    duration: 8 + Math.random() * 6,
+    delay,
+    repeat: -1,
+    ease: "linear",
+    onRepeat: () => {
+      // reset vertical position each time
+      const newY = Math.random() * heroH * 0.6 + 20;
+      gsap.set(c, { y: newY });
+    }
+  });
+}
 
     // Section titles animation
     document.querySelectorAll(".section-title").forEach(el => {
