@@ -31,6 +31,20 @@
       overflow: hidden;
       padding-top: 80px;
     }
+    #particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -78,6 +92,7 @@
     </div>
   </nav>
   <section id="hero" class="flex flex-col justify-center items-center text-center pt-16">
+    <div id="particles"></div>
     <div class="hero-content">
       <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6"></h1>
       <p class="text-xl md:text-2xl max-w-xl">
@@ -203,6 +218,35 @@
           ease: "back.out(1.7)",
           scrollTrigger: { trigger: el, start: "top 80%" }
         });
+      });
+    });
+
+    // Particle setup
+    const particles = [];
+    for (let i = 0; i < 100; i++) {
+      const p = document.createElement("div");
+      p.classList.add("particle");
+      document.getElementById("particles").appendChild(p);
+      const size = 10 + Math.random() * 10;
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight * 0.6;
+      gsap.set(p, {
+        width: size,
+        height: size,
+        backgroundColor: "gold",
+        top: y,
+        left: x,
+        opacity: 0.3 + Math.random() * 0.4
+      });
+      particles.push({ el: p, x, y });
+    }
+    particles.forEach(p => {
+      gsap.to(p.el, {
+        y: p.y - 60,
+        duration: 12 + Math.random() * 5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
       });
     });
   </script>
