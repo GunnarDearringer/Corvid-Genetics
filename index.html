@@ -4,14 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Corvid Genetics</title>
-
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- GSAP + ScrollTrigger + TextPlugin -->
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
@@ -23,61 +21,62 @@
       color: #3b3b3b;
       overflow-x: hidden;
     }
+
     section {
       min-height: 100vh;
       padding: 60px 20px;
     }
+
     #hero {
       position: relative;
       background: linear-gradient(135deg, #f0e8c2, #fff3b0);
       color: #5b421b;
       overflow: hidden;
     }
-    #intro-overlay {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      background-color: #000;
-      z-index: 9999;
-    }
+
     nav {
-      position: fixed; top: 0; left: 0; right: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 50;
     }
+
     #particles {
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 1;
     }
+
     .particle {
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
     }
+
     #hero .hero-content {
       position: relative;
       z-index: 2;
     }
+
     .section-title span {
       display: inline-block;
       opacity: 0;
       transform: translateY(20px);
     }
-    summary { list-style: none; cursor: pointer; }
-    summary::-webkit-details-marker { display: none; }
+
     .inline-icon {
       width: 24px;
       height: 24px;
       display: inline-block;
       margin-right: 8px;
+      vertical-align: middle;
     }
   </style>
 </head>
 
 <body>
-  <div id="intro-overlay"></div>
-
   <nav class="flex justify-between items-center px-8 py-4 bg-white bg-opacity-70 backdrop-blur">
     <div class="text-2xl font-bold">Corvid Genetics</div>
     <div class="space-x-6">
@@ -88,6 +87,7 @@
     </div>
   </nav>
 
+  <!-- Hero -->
   <section id="hero" class="flex flex-col justify-center items-center text-center pt-16 overflow-hidden">
     <div id="particles"></div>
     <div class="hero-content">
@@ -98,6 +98,7 @@
     </div>
   </section>
 
+  <!-- The Experiment -->
   <section id="about" class="bg-[#faf5e4] text-[#2c2c2c]">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-4xl font-bold mb-4 section-title">The Experiment</h2>
@@ -107,19 +108,50 @@
     </div>
   </section>
 
+  <!-- Logs -->
   <section id="logs" class="bg-[#e2f0d9] text-[#2f3e2e]">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-4xl font-bold mb-4 section-title">Research Logs</h2>
       <div class="space-y-8">
-        <div><h3 class="text-2xl font-semibold">Day 30 – Symbolic Burials</h3><p>Crows bury shiny objects — ritual behavior begins.</p></div>
-        <div><h3 class="text-2xl font-semibold">Day 100 – Totemic Behavior</h3><p>Crows gather around totems, dance during storms.</p></div>
-        <div><h3 class="text-2xl font-semibold">Day 300 – Emergence of Sky Deity</h3><p>Sky god myths are passed among crows.</p></div>
+        <div>
+          <h3 class="text-2xl font-semibold">Day 30 – Symbolic Burials</h3>
+          <p>Crows bury shiny objects — ritual behavior begins.</p>
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold">Day 100 – Totemic Behavior</h3>
+          <p>Crows gather around totems, dance during storms.</p>
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold">Day 300 – Emergence of Sky Deity</h3>
+          <p>Sky god myths are passed among crows.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Religion section kept same, add icons in actual HTML when icons are uploaded -->
+  <!-- Religion -->
+  <section id="religion" class="bg-[#e8eaf6] text-[#1a237e]">
+    <div class="max-w-4xl mx-auto space-y-6">
+      <h2 class="text-4xl font-bold mb-6 section-title">Crows in Religion</h2>
 
+      <details class="bg-white rounded-xl p-6 shadow-md group">
+        <summary class="flex justify-between items-center">
+          <span class="text-2xl font-semibold"><img src="icons/cross.png" class="inline-icon" alt="Christian Icon">Christianity</span>
+          <span class="transition-transform duration-200 group-open:rotate-45">+</span>
+        </summary>
+        <div class="mt-4 text-lg leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-300">
+          <p><strong>Biblical symbolism:</strong> Jesus references ravens as cared for by God, even as scavengers.</p>
+          <p><strong>Saint legends:</strong> Stories of saints fed by crows show their role in divine help.</p>
+          <blockquote class="mt-4 italic border-l-4 border-[#ffe59d] pl-4">“Are not two sparrows sold for a penny?” — Matthew 10:29</blockquote>
+        </div>
+      </details>
+
+      <!-- Other religions structured similarly -->
+
+    </div>
+  </section>
+
+  <!-- Conclusion -->
   <section id="conclusion" class="bg-[#fbe9e7] text-[#4a2f2f]">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-4xl font-bold mb-4 section-title">Final Thoughts</h2>
@@ -132,8 +164,7 @@
   <script>
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-    gsap.to("#intro-overlay", { opacity: 0, duration: 2, delay: 1, onComplete: () => document.getElementById("intro-overlay").remove() });
-
+    // Hero title typing
     const fullText = "Corvid Genetics";
     const heroTitle = document.getElementById("hero-title");
     let idx = 0;
@@ -143,36 +174,68 @@
         setTimeout(typeWriter, 100);
       }
     }
-    gsap.from("#hero", { opacity: 0, scale: 0.8, duration: 2, ease: "power2.out", onComplete: typeWriter });
-    gsap.to("#hero-title", { textShadow: "0 0 20px #ffe59d, 0 0 40px #ffe59d", repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut" });
+    gsap.from("#hero", {
+      opacity: 0, scale: 0.8, duration: 2, ease: "power2.out",
+      onComplete: typeWriter
+    });
 
-    const colors = ["gold", "silver", "white"];
+    // Hero title glow
+    gsap.to("#hero-title", {
+      textShadow: "0 0 20px #ffe59d, 0 0 40px #ffe59d",
+      repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut"
+    });
+
+    // Particle effect
+    const colors = ["gold", "white"];
     const particles = [];
+    const hero = document.getElementById("hero");
+
     for (let i = 0; i < 100; i++) {
       const p = document.createElement("div");
       p.classList.add("particle");
       document.getElementById("particles").appendChild(p);
-      const size = 10 + Math.random() * 10;
-      const x = Math.random() * document.getElementById("hero").offsetWidth;
-      const y = Math.random() * document.getElementById("hero").offsetHeight;
+      const size = 8 + Math.random() * 10;
+      const x = Math.random() * hero.offsetWidth;
+      const y = Math.random() * hero.offsetHeight;
       const color = colors[Math.floor(Math.random() * colors.length)];
-      gsap.set(p, { width: size, height: size, backgroundColor: color, top: y, left: x, opacity: 0.3 + Math.random() * 0.4 });
+      gsap.set(p, {
+        width: size, height: size,
+        backgroundColor: color,
+        top: y, left: x,
+        opacity: 0.3 + Math.random() * 0.4
+      });
       particles.push({ el: p, x, y });
+      gsap.to(p, {
+        y: `+=${Math.random() * 50 - 25}`,
+        x: `+=${Math.random() * 50 - 25}`,
+        duration: 5 + Math.random() * 5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
     }
-    particles.forEach(p => {
-      gsap.to(p.el, { y: p.y - 50, duration: 10 + Math.random() * 5, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    });
+
+    // Mouse repel effect
     window.addEventListener("mousemove", e => {
-      const rect = document.getElementById("hero").getBoundingClientRect();
+      const rect = hero.getBoundingClientRect();
+      if (e.clientY < rect.top || e.clientY > rect.bottom) return;
       particles.forEach(p => {
-        if (e.clientY < rect.top || e.clientY > rect.bottom) return;
         const dx = p.x + rect.left - e.clientX;
         const dy = p.y + rect.top - e.clientY;
         const dist = Math.hypot(dx, dy);
-        gsap.to(p.el, dist < 100 ? { x: Math.cos(Math.atan2(dy, dx)) * 100, y: Math.sin(Math.atan2(dy, dx)) * 100, duration: 0.3 } : { x: 0, y: 0, duration: 1 });
+        if (dist < 100) {
+          gsap.to(p.el, {
+            x: Math.cos(Math.atan2(dy, dx)) * 100,
+            y: Math.sin(Math.atan2(dy, dx)) * 100,
+            duration: 0.3
+          });
+        } else {
+          gsap.to(p.el, { x: 0, y: 0, duration: 1 });
+        }
       });
     });
 
+    // Scroll-triggered section animations
     gsap.utils.toArray("section").forEach(section => {
       gsap.from(section, {
         opacity: 0,
@@ -186,6 +249,7 @@
       });
     });
 
+    // Section title animation
     document.querySelectorAll(".section-title").forEach(el => {
       const text = el.textContent;
       el.innerHTML = "";
